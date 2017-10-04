@@ -1,0 +1,25 @@
+{
+  "name": "stratum-app",
+  "version": "0.1.0",
+  "description": "stratum main app",
+  "author": "RNO",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node index.js"
+  },
+  "dependencies": {
+    "hnode": "github:hemisphere-project/stratum-hnode"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5"
+  },
+  "homepage": "https://github.com/chevalvert/stratum#readme",
+  "bugs": {
+    "url": "https://github.com/chevalvert/stratum/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chevalvert/stratum.git"
+  }
+}

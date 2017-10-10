@@ -19,7 +19,9 @@ const animations = require(path.join(paths.lib, 'animations-manager'))([
 ])
 
 stratum.add(animations.update)
+animations.select('rain')
+
 stratum.start()
 
-// animations.select('rain')
-setInterval(() => animations.next(), 10000)
+
+setTimeout(() => animations.resume(), 10000)

@@ -23,5 +23,6 @@ animations.select('rain')
 
 stratum.start()
 
-
-setTimeout(() => animations.resume(), 10000)
+stratum.server.on('newnode', () => {
+  !animations.running && animations.resume()
+})

@@ -8,7 +8,7 @@
 
 ## Stratum ecosystem
 - `stratum` : stratum main app
-- [`stratum-wizard`](https://github.com/chevalvert/stratum-wizard) : stratum setup wizard
+- [`stratum-assistant`](https://github.com/chevalvert/stratum-assistant) : stratum setup and mapping assistant
 - [`stratum-hnode`](https://github.com/Hemisphere-Project/STRATUM) : leds UDP server + client
 - [`stratum-viewer`](https://github.com/chevalvert/stratum-viewer) : alternative UDP client
 

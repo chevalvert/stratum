@@ -17,10 +17,11 @@ const animations = require(path.join(paths.lib, 'animations-manager'))([
   require(path.join(paths.animations, 'debug')),
   require(path.join(paths.animations, 'rain')),
   require(path.join(paths.animations, 'wind')),
+  require(path.join(paths.animations, 'earth')),
 ])
 
 stratum.add(animations.update)
-animations.select('wind')
+animations.select('earth')
 
 stratum.start()
 

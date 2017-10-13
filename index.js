@@ -15,11 +15,12 @@ if (env === 'development') {
 const stratum = require(path.join(paths.lib, 'stratum'))
 const animations = require(path.join(paths.lib, 'animations-manager'))([
   require(path.join(paths.animations, 'debug')),
-  require(path.join(paths.animations, 'rain'))
+  require(path.join(paths.animations, 'rain')),
+  require(path.join(paths.animations, 'wind')),
 ])
 
 stratum.add(animations.update)
-animations.select('rain')
+animations.select('wind')
 
 stratum.start()
 

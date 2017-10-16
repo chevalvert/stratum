@@ -9,4 +9,23 @@ const paths = {
 
 const env = process.env.NODE_ENV || 'production'
 
-module.exports = { paths, env }
+let config = Object.assign({},
+  require(path.join(paths.root, 'stratum.config.json')),
+  require(path.join(paths.root, 'stratum.mapping.json')) || {})
+
+if (env === 'development') {
+  const chokidar = require('chokidar')
+  const fs = require('fs')
+  chokidar
+    .watch(path.join(paths.root, 'stratum.config.json'))
+    .on('change', file => {
+      try {
+        const newConfig = JSON.parse(fs.readFileSync(file))
+        config = Object.assign(config, newConfig)
+      } catch (e) {
+        console.log(e)
+      }
+    })
+}
+
+module.exports = { paths, config, env }

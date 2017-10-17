@@ -1,7 +1,7 @@
 'use strict'
 
 const path = require('path')
-const { paths } = require(path.join(__dirname, '..', 'main.config.js'))
+const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const { Vec3 } = require('vec23')
 const { map } = require('missing-math')
 
@@ -9,20 +9,11 @@ const stratum = require(path.join(paths.lib, 'stratum'))
 const Particle = require(path.join(paths.utils, 'particle'))
 const Animation = require(path.join(paths.utils, 'animation'))
 
-const config = {
-  particlesLength: 20,
-  particle: {
-    trailLength: 80,
-    trailPitch: 1,
-    acceleration: new Vec3(0, 0, -0.01),
-  }
-}
-
 module.exports = class Rain extends Animation {
   constructor (manager) {
     super(manager)
     this.particles = []
-    for (let i = 0; i < config.particlesLength; i++) {
+    for (let i = 0; i < config.animations.rain.particlesLength; i++) {
       this.particles[i] = createRandomParticle()
     }
   }
@@ -50,21 +41,27 @@ function createRandomParticle () {
   let x = Math.random() * stratum.width
   let y = Math.random() * stratum.depth
   let z = stratum.height + Math.random() * stratum.height
-  return new Particle(x, y, z, config.particle)
+  return new Particle(x, y, z, config.animations.rain.particle)
 }
 
 function drawRipple (particle) {
   for (let x = -1; x < 2; x++) {
     for (let y = -1; y < 2; y++) {
-      let v = map(particle.z, 0, -particle.trail.length, 255, 0)
-      stratum.set(particle.x + x, particle.y + y, 0, [v, v, v])
+      let v = map(particle.z, 0, -particle.trail.length, 1, 0)
+      let r = v * config.white[0]
+      let g = v * config.white[1]
+      let b = v * config.white[2]
+      stratum.set(particle.x + x, particle.y + y, 0, [r, g, b])
     }
   }
 }
 
 function drawTrail (particle) {
   particle.trail.forEach((point, index) => {
-    let v = (index / (particle.trail.length - 1)) * 255
-    stratum.set(point.x, point.y, point.z, [v, v, v])
+    let v = (index / (particle.trail.length - 1))
+    let r = v * config.white[0]
+    let g = v * config.white[1]
+    let b = v * config.white[2]
+    stratum.set(point.x, point.y, point.z, [r, g, b])
   })
 }

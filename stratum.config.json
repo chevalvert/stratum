@@ -1,5 +1,16 @@
 {
   "ledsLength": 90,
   "fps": 60,
-  "white": [255, 200, 150]
+  "white": [255, 200, 150],
+
+  "animations": {
+    "rain": {
+      "particlesLength": 20,
+      "particle": {
+        "trailLength": 80,
+        "trailPitch": 1,
+        "acceleration": [0, 0, -0.01]
+      }
+    }
+  }
 }

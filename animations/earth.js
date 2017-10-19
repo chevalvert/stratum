@@ -1,14 +1,12 @@
 'use strict'
 
 const path = require('path')
-const { paths } = require(path.join(__dirname, '..', 'main.config.js'))
+const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
 
 const stratum = require(path.join(paths.lib, 'stratum'))
 const Animation = require(path.join(paths.utils, 'animation'))
-
-const config = {}
 
 module.exports = class Earth extends Animation {
   constructor (manager) {
@@ -27,13 +25,17 @@ module.exports = class Earth extends Animation {
         yoff += 0.1
 
         let z = perlin(xoff, yoff)
-        let zf = z < 0 ? 0 : map(z, 0, 1, 0, stratum.height)
+        // let zf = z < 0 ? 0 : map(z, 0, 1, 0, stratum.height)
+        let zf = map(z, -1, 1, 0, stratum.height)
 
-        // stratum.set(x, y, zf, [255, 255, 255])
+        // stratum.set(x, y, zf, [config.white[0], config.white[1], config.white[2]])
 
         for (let zoff = 0; zoff < zf; zoff++) {
-          let v = map(zoff, 0, zf, 0, 255)
-          stratum.set(x, y, zoff, [v, v, v])
+          let v = map(zoff, 0, zf, 0, 1)
+          let r = v * config.white[0]
+          let g = v * config.white[1]
+          let b = v * config.white[2]
+          stratum.set(x, y, zoff, [r, g, b])
         }
       }
     }

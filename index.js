@@ -3,7 +3,7 @@
 process.title = 'stratum'
 
 const path = require('path')
-const { paths, env } = require(path.join(__dirname, 'main.config.js'))
+const { paths, args } = require(path.join(__dirname, 'main.config.js'))
 
 const stratum = require(path.join(paths.lib, 'stratum'))
 const animations = require(path.join(paths.lib, 'animations-manager'))([
@@ -23,13 +23,12 @@ animations.select('rain')
 
 // -------------------------------------------------------------------------
 
-if (env === 'development') {
-  require(path.join(paths.utils, 'dev-helper'))({
-    // @TODO: supply stratum-viewer binaries
-    viewer: '/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch',
-    onKeyPress: (str, key) => {
+require(path.join(paths.utils, 'dev-helper'))({
+  viewer: args.with,
+  onKeyPress: (str, key) => {
+    if (args.keys) {
       if (key.name === 'left') return animations.previous()
       if (key.name === 'right') return animations.next()
     }
-  })
-}
+  }
+})

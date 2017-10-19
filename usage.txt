@@ -1,0 +1,17 @@
+stratum-app
+
+Usage:
+  node index.js
+  node index.js -kl
+  node index.js --keys
+  node index.js --live
+  node index.js --with <path>
+  node index.js --help
+  node index.js --version
+
+Options:
+  -h, --help              Show this screen.
+  -k, --keys              Enable prev/next animations using arrow keys.
+  -l, --live              Enable livereloading of stratum.config.json
+  -v, --version           Print the current version.
+  -w, --with=<path>       Open the stratum-viewer applet as its visualiser.

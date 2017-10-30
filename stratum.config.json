@@ -2,6 +2,7 @@
   "ledsLength": 90,
   "fps": 60,
   "white": [255, 200, 150],
+  "scrollIncrement": 1,
 
   "animations": {
     "rain": {

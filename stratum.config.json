@@ -35,6 +35,19 @@
         "amplitude": [0, 2],
         "zoff": [0, 0]
       }
+    },
+
+    "cave": {
+      "camera": {
+        "speed": 0.03,
+        "radius": 10
+      },
+      "noise": {
+        "resolution": [0.01, 0.2],
+        "amplitude": [0, 2],
+        "zoff": [0, 0]
+      }
     }
+
   }
 }

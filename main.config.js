@@ -23,6 +23,7 @@ const minimistOpts = {
     'keys',
     'leap',
     'reload',
+    'timer',
     'version'
   ],
   string: ['with'],
@@ -31,6 +32,7 @@ const minimistOpts = {
     keys: ['k'],
     leap: ['l'],
     reload: ['r'],
+    timer: ['t'],
     version: ['v'],
     with: ['w']
   },
@@ -38,6 +40,7 @@ const minimistOpts = {
     leap: false,
     keys: false,
     reload: false,
+    timer: false,
     with: null
   }
 }

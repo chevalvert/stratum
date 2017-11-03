@@ -26,24 +26,20 @@ stratum.start()
 stratum.server.on('newnode', () => {
   if (!animations.running) {
     animations.resume()
-    args.leap && timer()
+    args.timer && timer()
   }
 })
 
 function timer (seconds = 0) {
   const leapTimeVisible = leap.timeVisible() || 0
-
   if (leapTimeVisible === 0 && seconds > config.secondsBeforeSkip) {
     seconds = -1
-
     if (Math.random() > 0.5) animations.next()
     else animations.previous()
   }
 
   setTimeout(() => timer(++seconds), 1000)
 }
-
-
 
 // -------------------------------------------------------------------------
 

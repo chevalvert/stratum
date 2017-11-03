@@ -9,10 +9,11 @@ stratum-app
 
 Usage:
   node index.js
-  node index.js -klr
+  node index.js -klrt
   node index.js --keys
   node index.js --leap
   node index.js --reload
+  node index.js --timer
   node index.js --with <path>
   node index.js --help
   node index.js --version
@@ -22,6 +23,7 @@ Options:
   -k, --keys              Enable prev/next animations using arrow keys.
   -l, --leap              Enable leapmotion.
   -r, --reload            Enable livereloading of stratum.config.json.
+  -t, --timer             Enable prev/next stack timer.
   -v, --version           Print the current version.
   -w, --with=<path>       Open the stratum-viewer applet as its visualiser.
 ```

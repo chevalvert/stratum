@@ -10,11 +10,11 @@ const manager = require(path.join(paths.lib, 'animations-manager'))
 const leap = require(path.join(paths.lib, 'leap'))
 
 const animations = manager([
-  require(path.join(paths.animations, 'debug')),
-  require(path.join(paths.animations, 'cave')),
-  require(path.join(paths.animations, 'earth')),
-  require(path.join(paths.animations, 'rain')),
-  require(path.join(paths.animations, 'storm')),
+  'debug',
+  'cave',
+  'earth',
+  'rain',
+  'storm'
 ])
 
 stratum.add(animations.update)

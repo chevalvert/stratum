@@ -29,11 +29,13 @@ const minimistOpts = {
   alias: {
     help: ['h'],
     keys: ['k'],
+    leap: ['l'],
     reload: ['r'],
     version: ['v'],
     with: ['w']
   },
   default: {
+    leap: false,
     keys: false,
     reload: false,
     with: null

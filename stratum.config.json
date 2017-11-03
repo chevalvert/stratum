@@ -1,27 +1,52 @@
 {
   "ledsLength": 90,
   "fps": 60,
-  "white": [255, 200, 150],
+  "white": [255, 255, 255],
   "scrollIncrement": 1,
+  "secondsBeforeSkip": 30,
 
   "animations": {
     "rain": {
-      "particlesLength": 20,
+      "particlesLength": [2, 100],
       "particle": {
-        "trailLength": 80,
+        "trailLength": [80, 1],
         "trailPitch": 1,
-        "maxSpeed": 1,
+        "maxSpeed": [1, 0],
         "acceleration": [0, 0, -0.01]
       }
     },
 
-    "wind" : {
+    "wind": {
       "particlesLength": 100,
       "particle": {
         "trailLength": 2,
         "trailPitch": 2,
         "maxSpeed": 0.5,
         "acceleration": [0.0001, 0, -0.0005]
+      }
+    },
+
+    "earth": {
+      "camera": {
+        "speed": 0.03,
+        "radius": 10
+      },
+      "noise": {
+        "resolution": [0.01, 0.2],
+        "amplitude": [0, 2],
+        "zoff": [0, 0]
+      }
+    },
+
+    "cave": {
+      "camera": {
+        "speed": 0.03,
+        "radius": 10
+      },
+      "noise": {
+        "resolution": [0.01, 0.2],
+        "amplitude": [0, 2],
+        "zoff": [0, 0]
       }
     }
 

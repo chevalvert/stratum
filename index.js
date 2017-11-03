@@ -3,21 +3,43 @@
 process.title = 'stratum'
 
 const path = require('path')
-const { paths, args } = require(path.join(__dirname, 'main.config.js'))
+const { paths, config, args } = require(path.join(__dirname, 'main.config.js'))
 
 const stratum = require(path.join(paths.lib, 'stratum'))
-const animations = require(path.join(paths.lib, 'animations-manager'))([
+const manager = require(path.join(paths.lib, 'animations-manager'))
+const leap = require(path.join(paths.lib, 'leap'))
+
+const animations = manager([
   require(path.join(paths.animations, 'debug')),
+  require(path.join(paths.animations, 'cave')),
   require(path.join(paths.animations, 'earth')),
   require(path.join(paths.animations, 'rain')),
-  require(path.join(paths.animations, 'wind')),
+  require(path.join(paths.animations, 'storm')),
 ])
 
 stratum.add(animations.update)
 stratum.start()
 stratum.server.on('newnode', () => {
-  !animations.running && animations.resume()
+  if (!animations.running) {
+    animations.resume()
+    args.leap && timer()
+  }
 })
+
+function timer (seconds = 0) {
+  const leapTimeVisible = leap.timeVisible() || 0
+
+  if (leapTimeVisible === 0 && seconds > config.secondsBeforeSkip) {
+    seconds = -1
+
+    if (Math.random() > 0.5) animations.next()
+    else animations.previous()
+  }
+
+  setTimeout(() => timer(++seconds), 1000)
+}
+
+
 
 // -------------------------------------------------------------------------
 

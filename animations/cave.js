@@ -7,7 +7,7 @@ const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
 
-module.exports = class Earth extends Animation {
+module.exports = class Cave extends Animation {
   constructor (manager, offset) {
     super(manager, offset)
     this.camera = { x: 0, y: 0 }
@@ -38,7 +38,7 @@ module.exports = class Earth extends Animation {
         let v = perlin(xoff, yoff)
         let z = map(Math.abs(v), 0, 1, 0, this.height * Math.abs(amp) + 0.00001) + (off * this.height)
         for (let zoff = 0; zoff < z; zoff++) {
-          this.set(x, y, zoff, [config.white[0], config.white[1], config.white[2]])
+          this.set(x, y, this.height - zoff, [config.white[0], config.white[1], config.white[2]])
         }
       }
     }

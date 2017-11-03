@@ -6,11 +6,11 @@
 
   "animations": {
     "rain": {
-      "particlesLength": 20,
+      "particlesLength": [2, 100],
       "particle": {
-        "trailLength": 80,
+        "trailLength": [80, 1],
         "trailPitch": 1,
-        "maxSpeed": 1,
+        "maxSpeed": [1, 0],
         "acceleration": [0, 0, -0.01]
       }
     },

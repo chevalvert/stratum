@@ -9,6 +9,12 @@ const stratum = require(path.join(paths.lib, 'stratum'))
 const manager = require(path.join(paths.lib, 'animations-manager'))
 const leap = require(path.join(paths.lib, 'leap'))
 
+const wsm = require(path.join(paths.lib, 'ws-midi'))
+
+setInterval(() => {
+  wsm.noteOn('C2', Math.random() * 127)
+}, 1000)
+
 const animations = manager.stack([
   'debug',
   manager.Separator,

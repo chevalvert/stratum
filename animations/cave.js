@@ -37,8 +37,8 @@ module.exports = class Cave extends Animation {
         yoff += res
         let v = perlin(xoff, yoff)
         let z = map(Math.abs(v), 0, 1, 0, this.height * Math.abs(amp) + 0.00001) + (off * this.height)
-        for (let zoff = this.height; zoff > z; zoff--) {
-          this.set(x, y, zoff, [config.white[0], config.white[1], config.white[2]])
+        for (let zoff = 0; zoff < z; zoff++) {
+          this.set(x, y, this.height - zoff, [config.white[0], config.white[1], config.white[2]])
         }
       }
     }

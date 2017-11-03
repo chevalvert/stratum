@@ -18,18 +18,24 @@ const paths = {
 
 const minimist = require('minimist')
 const minimistOpts = {
-  boolean: ['help', 'keys', 'live', 'version'],
+  boolean: [
+    'help',
+    'keys',
+    'leap',
+    'reload',
+    'version'
+  ],
   string: ['with'],
   alias: {
     help: ['h'],
     keys: ['k'],
-    live: ['l'],
+    reload: ['r'],
     version: ['v'],
     with: ['w']
   },
   default: {
     keys: false,
-    live: false,
+    reload: false,
     with: null
   }
 }
@@ -64,7 +70,7 @@ let config = Object.assign({},
   require(path.join(paths.root, 'stratum.config.json')),
   require(path.join(paths.root, 'stratum.mapping.json')) || {})
 
-if (args.live) {
+if (args.reload) {
   const chokidar = require('chokidar')
   const fs = require('fs')
   chokidar

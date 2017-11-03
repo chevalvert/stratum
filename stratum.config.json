@@ -6,6 +6,11 @@
   "secondsBeforeSkip": 30,
 
   "animations": {
+    "separator": {
+      "color": [255, 0, 0],
+      "height": 10
+    },
+
     "rain": {
       "particlesLength": [2, 100],
       "particle": {

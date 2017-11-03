@@ -9,11 +9,15 @@ const stratum = require(path.join(paths.lib, 'stratum'))
 const manager = require(path.join(paths.lib, 'animations-manager'))
 const leap = require(path.join(paths.lib, 'leap'))
 
-const animations = manager([
+const animations = manager.stack([
   'debug',
+  manager.Separator,
   'cave',
+  manager.Separator,
   'earth',
+  manager.Separator,
   'rain',
+  manager.Separator,
   'storm'
 ])
 

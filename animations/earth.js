@@ -16,17 +16,16 @@ module.exports = class Earth extends Animation {
   update (dt) {
     super.update(dt)
 
-    this.camera.x = Math.sin(this.count * this.config.camera.speed) * this.config.camera.radius
-    this.camera.y = Math.cos(this.count * this.config.camera.speed) * this.config.camera.radius
+    const h = hand([1, 1, 1])
+    this.camera.x += h ? map(h.x, 0, 1, -0.01, 0.01) : 0
+    this.camera.y += this.config.camera.speed * (h ? map(h.x, 0, 1, 0, 1) : 1)
 
     this.clear()
-    this.terrain({...this.camera})
+    this.terrain(h || { x: 0.5, y: 0.5, z: 0.5 }, {...this.camera})
   }
 
-  terrain (position) {
-    const h = hand([1, 1, 1]) || { x: 0.5, y: 0.5, z: 0.5 }
-    const amp = map(h.y, 0, 1, this.config.noise.amplitude[0], this.config.noise.amplitude[1])
-    const res = map(h.x, 0, 1, this.config.noise.resolution[0], this.config.noise.resolution[1])
+  terrain (h, position) {
+    const res = this.config.noise.resolution
     const off = map(h.z, 0, 1, this.config.noise.zoff[0], this.config.noise.zoff[1])
 
     let xoff = position.x
@@ -36,7 +35,7 @@ module.exports = class Earth extends Animation {
       for (let y = 0; y < this.depth; y++) {
         yoff += res
         let v = perlin(xoff, yoff)
-        let z = map(Math.abs(v), 0, 1, 0, this.height * Math.abs(amp) + 0.00001) + (off * this.height)
+        let z = map(Math.abs(v), 0, 1, 0, this.height) + (off * this.height)
         for (let zoff = 0; zoff < z; zoff++) {
           this.set(x, y, zoff, [config.white[0], config.white[1], config.white[2]])
         }

@@ -13,8 +13,12 @@ module.exports = class Rain extends Animation {
   constructor (manager, offset) {
     super(manager, offset)
     this.particles = []
-    for (let i = 0; i < this.config.particlesLength[0]; i++) {
-      this.particles[i] = this.createRandomParticle()
+
+    const len = (this.config.particlesLength[0] + this.config.particlesLength[1]) / 2
+    for (let i = 0; i < len; i++) {
+      const x = Math.random() * this.width
+      const y = Math.random() * this.depth
+      this.particles[i] = this.createParticle(this.config.particle)
     }
   }
 
@@ -25,7 +29,7 @@ module.exports = class Rain extends Animation {
     const h = hand([1, 1, 1]) || { x: 0.5, y: 0.5, z: 0.5 }
     const particlesLength = map(h.x, 0, 1, this.config.particlesLength[0], this.config.particlesLength[1])
     const maxSpeed = map(h.y, 0, 1, this.config.particle.maxSpeed[0], this.config.particle.maxSpeed[1])
-    const trailLength = map(h.z, 0, 1, this.config.particle.trailLength[0], this.config.particle.trailLength[1])
+    const trailLength = h ? map(h.z, 0, 1, this.config.particle.trailLength[0], this.config.particle.trailLength[1]) : 1
 
     const particleOpts = {
       ...this.config.particle,
@@ -35,7 +39,7 @@ module.exports = class Rain extends Animation {
 
     if (this.particles.length < particlesLength) {
       for (let i = 0; i < particlesLength - this.particles.length; i++) {
-        this.particles.push(this.createRandomParticle(particleOpts))
+        this.particles.push(this.createParticle(particleOpts))
       }
     }
 
@@ -45,46 +49,46 @@ module.exports = class Rain extends Animation {
       particle.update()
 
       if (particle.oob && particle.z < 0) {
-        if (this.config.ripples) this.drawRipple(particle)
         if (Particle.isOob(particle.lastTrail)) {
           if (index < particlesLength) {
-            this.particles[index] = this.createRandomParticle(particleOpts)
+            this.particles[index] = this.createParticle(particleOpts)
           } else this.particles.splice(index, 1)
+        }
+        if (this.config.ripple.enable) {
+          if (particle.z < this.config.ripple.triggerZ[0] && particle.z > this.config.ripple.triggerZ[1]) {
+            this.drawRipple(particle)
+          }
         }
       }
 
-      this.drawTrail(particle)
+      this.drawTrail(particle, trailLength)
     })
   }
 
-  createRandomParticle (particleOpts) {
-    let x = Math.random() * this.width
-    let y = Math.random() * this.depth
-    let z = this.height + Math.random() * this.height
+  createParticle (particleOpts) {
+    const x = this.width * Math.random()
+    const y = this.depth * Math.random()
+    const z = this.height + Math.random() * this.height
     return new Particle(x, y, z, particleOpts)
   }
 
   drawRipple (particle) {
     for (let x = -1; x < 2; x++) {
       for (let y = -1; y < 2; y++) {
-        let v = map(particle.z, 0, -particle.trail.length, 1, 0)
-        let r = v * config.white[0]
-        let g = v * config.white[1]
-        let b = v * config.white[2]
-        this.set(particle.x + x, particle.y + y, 0, [r, g, b])
+        this.set(particle.x + x, particle.y + y, 0, this.config.ripple.color)
       }
     }
   }
 
-  drawTrail (particle) {
-    let za = particle.z
-    let zb = particle.lastTrail.z
+  drawTrail (particle, len) {
+    const za = particle.z
+    const zb = particle.z + len
 
     for (let z = za; z < zb; z++) {
-      let v = map(z, za, zb, 1, 0) ** 2
-      let r = v * config.white[0]
-      let g = v * config.white[1]
-      let b = v * config.white[2]
+      const v = Math.max(0.01, map(z, za, zb, 1, 0) ** 2)
+      const r = v * this.config.color[0]
+      const g = v * this.config.color[1]
+      const b = v * this.config.color[2]
       this.set(particle.x, particle.y, z, [r, g, b])
     }
   }

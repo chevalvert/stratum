@@ -1,58 +1,66 @@
 {
   "ledsLength": 90,
   "fps": 60,
-  "white": [255, 255, 255],
+  "white": [255, 200, 150],
   "scrollIncrement": 1,
-  "secondsBeforeSkip": 30,
+  "secondsBeforeSkip": 10,
 
   "animations": {
     "separator": {
       "color": [255, 0, 0],
-      "height": 10
+      "height": 1
     },
 
     "rain": {
-      "particlesLength": [2, 100],
+      "color": [255, 200, 220],
+      "ripple": {
+        "enable": true,
+        "color": [12, 10, 7],
+        "triggerZ": [-2, -10]
+      },
+      "particlesLength": [3, 80],
       "particle": {
-        "trailLength": [80, 1],
+        "trailLength": [1, 50],
         "trailPitch": 1,
-        "maxSpeed": [1, 0],
+        "maxSpeed": [0.1, 1],
         "acceleration": [0, 0, -0.01]
       }
     },
 
     "wind": {
-      "particlesLength": 100,
+      "particlesLength": [3, 100],
       "particle": {
-        "trailLength": 2,
-        "trailPitch": 2,
-        "maxSpeed": 0.5,
-        "acceleration": [0.0001, 0, -0.0005]
+        "trailLength": 3,
+        "trailPitch": 1,
+        "maxSpeed": 0.1,
+        "acceleration": [0.01, 0, 0]
       }
     },
 
     "earth": {
       "camera": {
-        "speed": 0.03,
-        "radius": 10
+        "speed": -0.008
       },
       "noise": {
-        "resolution": [0.01, 0.2],
-        "amplitude": [0, 2],
-        "zoff": [0, 0]
+        "resolution": 0.1,
+        "zoff": [-0.25, 0.5]
       }
     },
 
     "cave": {
+      "color": [255, 200, 220],
       "camera": {
-        "speed": 0.03,
-        "radius": 10
+        "speed": -0.003
       },
       "noise": {
-        "resolution": [0.01, 0.2],
-        "amplitude": [0, 2],
-        "zoff": [0, 0]
+        "resolution": 0.2,
+        "zoff": [1, -0.25]
       }
+    },
+
+    "storm": {
+      "delay": [0, 3],
+      "duration": [10, 1]
     }
 
   }

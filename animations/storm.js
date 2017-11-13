@@ -3,52 +3,70 @@
 const path = require('path')
 const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
-const { map, clamp } = require('missing-math')
+const { lerp, clamp } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
 
 module.exports = class Storm extends Animation {
   constructor (manager, offset) {
     super(manager, offset)
-    this.strike = {
-      start: 0
-    }
+    this.strikes = []
+    this.lastStrike = 0
   }
 
   update (dt) {
     super.update(dt)
-
     this.clear()
 
-    const h = hand([1, 1, 1])
-    const delay = map(h ? h.x : 0.5, 0, 1, this.config.delay[0], this.config.delay[1])
-    const end = h
-      ? map(h.z, 0, 1, this.config.duration[0], this.config.duration[1])
-      : map(Math.random(), 0, 1, this.config.duration[0], this.config.duration[1])
+    const delay = lerp(this.config.delay[0], this.config.delay[1], Math.random())
+    if (this.count > this.lastStrike + delay && this.strikes.length < this.config.maxStrikesLength) {
+      const lifetime = lerp(this.config.duration[0], this.config.duration[1], Math.random())
+      this.spawn({lifetime})
+    }
 
-    // console.log(delay.toFixed(2), end.toFixed(2))
+    this.strikes.forEach(strike => {
+      this.move(strike)
+      this.draw(strike)
+      if (this.count > strike.end) this.remove(strike)
+    })
+  }
 
-    if (this.count > delay) {
-      if (this.strike.start + end < this.count) {
-        if (Math.random() > 0.5) this.strike.x += Math.sin(Math.random() * Math.PI * 2)
-        else this.strike.y += Math.sin(Math.random() * Math.PI * 2)
+  spawn ({x, y, lifetime}) {
+    this.lastStrike = this.count
+    this.strikes.push({
+      x: x || Math.floor(Math.random() * this.width - 1),
+      y: y || Math.floor(Math.random() * this.depth - 1),
+      start: this.count,
+      end: this.count + lifetime,
+      target: {
+        x: Math.floor(Math.random() * this.width - 1),
+        y: Math.floor(Math.random() * this.depth - 1)
+      }
+    })
+  }
 
-        const v = Math.max(0.01, map(this.count, this.strike.start, end, 1, 0)) ** 2
+  move (strike) {
+    const roff = Math.random() >= 0.5 ? -1 : 1
+    const dirX = Math.sign(strike.target.x - strike.x) || roff
+    const dirY = Math.sign(strike.target.y - strike.y) || roff
 
-        const r = v * config.white[0]
-        const g = v * config.white[1]
-        const b = v * config.white[2]
+    if (Math.random() >= 0.5) strike.x = strike.x + dirX
+    else strike.y = strike.y + dirY
 
-        for (let z = 0; z < this.height; z++) {
-          this.set(this.strike.x, this.strike.y, z, [r, g, b])
-        }
-      } else {
-        this.count = 0
-        this.strike || {
-          start: this.count,
-          x: Math.round(Math.random() * this.width - 1),
-          y: Math.round(Math.random() * this.depth - 1)
-        }
+    if (strike.x === strike.target.x && strike.y === strike.target.y) {
+      strike.target = {
+        x: Math.floor(Math.random() * this.width - 1),
+        y: Math.floor(Math.random() * this.depth - 1)
       }
     }
+  }
+
+  draw (strike) {
+    for (let z = 0; z < this.height; z++) {
+      this.set(strike.x, strike.y, z, this.config.color)
+    }
+  }
+
+  remove (strike) {
+    strike && this.strikes.splice(strike, 1)
   }
 }

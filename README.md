@@ -5,15 +5,15 @@
 <br>
 
 ```
-stratum-app
+stratum
 
 Usage:
-  node index.js
-  node index.js -klr --log.level=debug
-  node index.js -lt --log=<path>
-  node index.js --with=<path>
-  node index.js --help
-  node index.js --version
+  stratum
+  stratum -klr --log.level=debug
+  stratum -lt --log=<path>
+  stratum --with=<path>
+  stratum --help
+  stratum --version
 
 Options:
   -h, --help              Show this screen.

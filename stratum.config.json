@@ -22,7 +22,7 @@
       "particle": {
         "trailLength": [1, 50],
         "trailPitch": 1,
-        "maxSpeed": [0.1, 1],
+        "maxSpeed": [0.1, 2],
         "acceleration": [0, 0, -0.01]
       }
     },

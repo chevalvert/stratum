@@ -5,6 +5,9 @@
   "author": "RNO",
   "license": "MIT",
   "private": false,
+  "bin": {
+    "stratum": "index.js"
+  },
   "scripts": {
     "start": "node index.js --keys --reload --leap --log-level='debug' --with='/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch'"
   },

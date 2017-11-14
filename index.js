@@ -24,7 +24,7 @@ const animations = manager.stack([
   'wind'
 ])
 
-stratum.add(animations.update)
+stratum.raf(animations.update)
 stratum.start()
 stratum.server.on('newnode', () => {
   if (!animations.running) {

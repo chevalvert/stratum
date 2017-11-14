@@ -4,6 +4,7 @@
   "white": [255, 200, 150],
   "scrollIncrement": 1,
   "secondsBeforeSkip": 10,
+  "mockHandEasing": 0.09,
 
   "animations": {
     "separator": {

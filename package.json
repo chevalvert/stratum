@@ -6,12 +6,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js --keys --reload --leap --with '/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch'"
+    "start": "node index.js --keys --reload --leap --log-level='debug' --with='/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch'"
   },
   "dependencies": {
     "chokidar": "^1.7.0",
     "hnode": "github:hemisphere-project/stratum-hnode",
     "leapjs": "^0.6.4",
+    "log": "^1.4.0",
     "minimist": "^1.2.0",
     "missing-math": "github:arnaudjuracek/missing-math",
     "vec23": "^0.1.0"

@@ -2,12 +2,9 @@ stratum-app
 
 Usage:
   node index.js
-  node index.js -klrt
-  node index.js --keys
-  node index.js --leap
-  node index.js --reload
-  node index.js --timer
-  node index.js --with <path>
+  node index.js -klr --log.level=debug
+  node index.js -lt --log=<path>
+  node index.js --with=<path>
   node index.js --help
   node index.js --version
 
@@ -19,3 +16,16 @@ Options:
   -t, --timer             Enable prev/next stack timer.
   -v, --version           Print the current version.
   -w, --with=<path>       Open the stratum-viewer applet as its visualiser.
+  
+  --log=<path>            Pipe stdout to the specified log file.
+  --log-level=<level>     Set the log level (default is 'info').
+  
+Log level:
+  0, emergency            System is unusable.
+  1, alert                Action must be taken immediately.
+  2, critical             The system is in critical condition.
+  3, error                Error condition.
+  4, warning              Warning condition.
+  5, notice               A normal but significant condition.
+  6, info                 A purely informational message.
+  7, debug                Messages to debug an application.

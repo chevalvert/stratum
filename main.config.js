@@ -26,11 +26,13 @@ const minimistOpts = {
     'timer',
     'version'
   ],
-  string: ['with'],
+  string: ['with', 'log', 'log-level'],
   alias: {
     help: ['h'],
     keys: ['k'],
     leap: ['l'],
+    log: [],
+    'log-level': [],
     reload: ['r'],
     timer: ['t'],
     version: ['v'],
@@ -39,6 +41,8 @@ const minimistOpts = {
   default: {
     leap: false,
     keys: false,
+    log: false,
+    'log-level': 6,
     reload: false,
     timer: false,
     with: null
@@ -68,6 +72,19 @@ Object.keys(minimistOpts.alias).forEach(key => {
 })
 
 /**
+ * Logging system
+ */
+
+const Log = require('log')
+const stream = args.log
+  ? fs.createWriteStream(path.join(process.cwd(), args.log))
+  : null
+const logLevel = isNaN(args['log-level'])
+  ? args['log-level']
+  : parseInt(args['log-level'])
+const log = new Log(logLevel, stream)
+
+/**
  * Project config.json, with livereload capability
  */
 
@@ -85,9 +102,9 @@ if (args.reload) {
         const newConfig = JSON.parse(fs.readFileSync(file))
         config = Object.assign(config, newConfig)
       } catch (e) {
-        console.log(e)
+        log.error(e)
       }
     })
 }
 
-module.exports = { paths, config, args }
+module.exports = { paths, config, args, log }

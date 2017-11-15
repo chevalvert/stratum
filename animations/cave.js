@@ -16,12 +16,12 @@ module.exports = class Cave extends Animation {
   update (dt) {
     super.update(dt)
 
-    const h = hand([1, 1, 1])
-    this.camera.x += h ? map(h.x, 0, 1, -0.01, 0.01) : 0
-    this.camera.y += this.config.camera.speed * (h ? map(h.x, 0, 1, 0, 1) : 1)
+    const h = hand()
+    this.camera.x += map(h.x, 0, 1, -0.01, 0.01)
+    this.camera.y += h.x * this.config.camera.speed
 
     this.clear()
-    this.terrain(h || { x: 0.5, y: 0.5, z: 0.5 }, {...this.camera})
+    this.terrain(h, this.camera)
   }
 
   terrain (h, position) {

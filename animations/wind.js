@@ -23,8 +23,8 @@ module.exports = class Wind extends Animation {
     super.update(dt)
     this.clear()
 
-    const h = hand([1, 1, 1]) || { x: 0.5, y: 0.5, z: 0.5 }
-    const surfaceHeight = this.height * h.z
+    const h = hand()
+    const surfaceHeight = h.z * this.height
     const particlesLength = map(h.x, 0, 1, this.config.particlesLength[0], this.config.particlesLength[1])
 
     let surface = []
@@ -43,13 +43,11 @@ module.exports = class Wind extends Animation {
 
     this.particles.forEach((particle, index) => {
       particle.update()
-
       if (particle.oob) {
         if (index < particlesLength) {
           this.particles[index] = this.createParticle(this.config.particle)
         } else this.particles.splice(index, 1)
       }
-
       this.drawTrail(particle, this.config.particle.trailLength, surface)
     })
 
@@ -71,7 +69,9 @@ module.exports = class Wind extends Animation {
     const xa = particle.x
     const xb = particle.x + len
 
-    if (surface[Math.round(particle.x)] && particle.z < surface[Math.round(particle.x)][Math.round(particle.y)]) {
+    const i = Math.round(particle.x)
+    const j = Math.round(particle.y)
+    if (surface[i] && particle.z < surface[i][j]) {
       for (let x = xa; x < xb; x++) {
         const v = Math.max(0.01, map(x, xa, xb, 1, 0) ** 2)
         const r = v * config.white[0]

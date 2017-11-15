@@ -26,10 +26,10 @@ module.exports = class Rain extends Animation {
     super.update(dt)
     this.clear()
 
-    const h = hand([1, 1, 1]) || { x: 0.5, y: 0.5, z: 0.5 }
+    const h = hand()
     const particlesLength = map(h.x, 0, 1, this.config.particlesLength[0], this.config.particlesLength[1])
     const maxSpeed = map(h.y, 0, 1, this.config.particle.maxSpeed[0], this.config.particle.maxSpeed[1])
-    const trailLength = h ? map(h.z, 0, 1, this.config.particle.trailLength[0], this.config.particle.trailLength[1]) : 1
+    const trailLength = map(h.z, 0, 1, this.config.particle.trailLength[0], this.config.particle.trailLength[1])
 
     const particleOpts = {
       ...this.config.particle,

@@ -16,24 +16,23 @@ module.exports = class Earth extends Animation {
   update (dt) {
     super.update(dt)
 
-    const h = hand([1, 1, 1])
-    this.camera.x += h ? map(h.x, 0, 1, -0.01, 0.01) : 0
-    this.camera.y += this.config.camera.speed * (h ? map(h.x, 0, 1, 0, 1) : 1)
+    const h = hand()
+    this.camera.x += map(h.x, 0, 1, -0.01, 0.01)
+    this.camera.y += h.x * this.config.camera.speed
 
     this.clear()
-    this.terrain(h || { x: 0.5, y: 0.5, z: 0.5 }, {...this.camera})
+    this.terrain(h, this.camera)
   }
 
   terrain (h, position) {
-    const res = this.config.noise.resolution
     const off = map(h.z, 0, 1, this.config.noise.zoff[0], this.config.noise.zoff[1])
 
     let xoff = position.x
     for (let x = 0; x < this.width; x++) {
-      xoff += res
+      xoff += this.config.noise.resolution
       let yoff = position.y
       for (let y = 0; y < this.depth; y++) {
-        yoff += res
+        yoff += this.config.noise.resolution
         let v = perlin(xoff, yoff)
         let z = map(Math.abs(v), 0, 1, 0, this.height) + (off * this.height)
         for (let zoff = 0; zoff < z; zoff++) {

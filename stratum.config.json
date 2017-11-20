@@ -6,6 +6,13 @@
   "secondsBeforeSkip": 10,
   "mockHandEasing": 0.09,
 
+  "sound": {
+    "udp": {
+      "host": "localhost",
+      "port": 1337
+    }
+  },
+
   "animations": {
     "separator": {
       "color": [255, 0, 0],

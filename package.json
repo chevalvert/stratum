@@ -18,6 +18,7 @@
     "log": "^1.4.0",
     "minimist": "^1.2.0",
     "missing-math": "github:arnaudjuracek/missing-math",
+    "osc": "^2.2.0",
     "vec23": "^0.1.0"
   },
   "devDependencies": {},

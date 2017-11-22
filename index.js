@@ -9,6 +9,7 @@ const { paths, config, args } = require(path.join(__dirname, 'main.config.js'))
 const stratum = require(path.join(paths.lib, 'stratum'))
 const manager = require(path.join(paths.lib, 'animations-manager'))
 const leap = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 const animations = manager.stack([
   // 'debug',
@@ -31,6 +32,7 @@ stratum.start()
 stratum.server.on('newnode', () => {
   if (!animations.running) {
     animations.resume()
+    args.sound && initSound()
     args.timer && timer()
   }
 })
@@ -44,6 +46,13 @@ function timer (ms = 0) {
   }
 
   setTimeout(() => timer(ms + 1000), 1000)
+}
+
+function initSound () {
+  for (let i = 0; i <= 5; i++) {
+    sound.send('/mix', [i, 0.1])
+  }
+  sound.send('/play', 1)
 }
 
 // -------------------------------------------------------------------------

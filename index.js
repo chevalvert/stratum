@@ -27,6 +27,7 @@ const animations = manager.stack([
 
 stratum.raf(animations.update)
 stratum.start()
+
 stratum.server.on('newnode', () => {
   if (!animations.running) {
     animations.resume()
@@ -34,15 +35,15 @@ stratum.server.on('newnode', () => {
   }
 })
 
-function timer (seconds = 0) {
+function timer (ms = 0) {
   const leapTimeVisible = leap.timeVisible() || 0
-  if (leapTimeVisible === 0 && seconds > config.secondsBeforeSkip) {
-    seconds = -1
+  if (leapTimeVisible === 0 && ms > config.timer.minimumInterval) {
+    ms = 1000
     if (Math.random() > 0.5) animations.next()
     else animations.previous()
   }
 
-  setTimeout(() => timer(++seconds), 1000)
+  setTimeout(() => timer(ms + 1000), 1000)
 }
 
 // -------------------------------------------------------------------------

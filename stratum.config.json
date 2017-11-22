@@ -30,6 +30,10 @@
       "noise": {
         "resolution": 0.2,
         "zoff": [1, -0.25]
+      },
+      "sound": {
+        "name": "/cave",
+        "mod": [0, 1]
       }
     },
 
@@ -38,7 +42,17 @@
       "noise": {
         "resolution": 0.1,
         "zoff": [-0.25, 0.5]
-      }
+      },
+      "sounds": [
+        {
+          "name": "/earth-1",
+          "mod": [0.01, 0.3]
+        },
+        {
+          "name": "/earth-2",
+          "mod": [0, 1]
+        }
+      ]
     },
 
     "rain": {
@@ -53,6 +67,12 @@
         "trailLength": [1, 50],
         "maxSpeed": [0.1, 2],
         "acceleration": [0, 0, -0.01]
+      },
+      "sound": {
+        "name": "/rain",
+        "notes": [65, 76, 72, 59],
+        "velocity": [1, 127],
+        "duration": [10, 100]
       }
     },
 
@@ -64,7 +84,12 @@
       ],
       "delay": [0, 10],
       "duration": [3, 5],
-      "maxStrikesLength": 3
+      "maxStrikesLength": 3,
+      "sound": {
+        "name": "/storm",
+        "note": 65,
+        "velocity": 127
+      }
     },
 
     "wind": {
@@ -73,7 +98,17 @@
         "trailLength": 3,
         "maxSpeed": 0.1,
         "acceleration": [0.01, 0, 0]
-      }
+      },
+      "sounds": [
+        {
+          "name": "/wind-1",
+          "mod": [0.01, 0.3]
+        },
+        {
+          "name": "/wind-2",
+          "mod": [0.01, 0.3]
+        }
+      ]
     }
   }
 }

@@ -5,6 +5,7 @@ const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const { Vec3 } = require('vec23')
 const { map } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
+const sound  = require(path.join(paths.lib, 'sound'))
 
 const Particle = require(path.join(paths.utils, 'particle'))
 const Animation = require(path.join(paths.utils, 'animation'))
@@ -13,6 +14,7 @@ module.exports = class Rain extends Animation {
   constructor (manager, offset) {
     super(manager, offset)
     this.particles = []
+    this.rippleNotesIndex = 0
 
     const len = (this.config.particlesLength[0] + this.config.particlesLength[1]) / 2
     for (let i = 0; i < len; i++) {
@@ -24,6 +26,8 @@ module.exports = class Rain extends Animation {
 
   update (dt) {
     super.update(dt)
+    sound.send('/mix', [3, this.percentVisible])
+
     this.clear()
 
     const h = hand()
@@ -57,6 +61,12 @@ module.exports = class Rain extends Animation {
         if (this.config.ripple.enable) {
           if (particle.z < this.config.ripple.triggerZ[0] && particle.z > this.config.ripple.triggerZ[1]) {
             this.drawRipple(particle)
+            if (!particle.soundHasBeenTriggered) {
+              const velocity = Math.floor(map(this.particles.length, this.config.particlesLength[0], this.config.particlesLength[1], this.config.sound.velocity[0], this.config.sound.velocity[1]))
+              const duration = Math.floor(map(this.particles.length, this.config.particlesLength[0], this.config.particlesLength[1], this.config.sound.duration[0], this.config.sound.duration[1]))
+              sound.send(this.config.sound.name, [particle.note, velocity, duration])
+              particle.soundHasBeenTriggered = true
+            }
           }
         }
       }
@@ -69,7 +79,13 @@ module.exports = class Rain extends Animation {
     const x = this.width * Math.random()
     const y = this.depth * Math.random()
     const z = this.height + Math.random() * this.height
-    return new Particle(x, y, z, particleOpts)
+
+    const particle = new Particle(x, y, z, particleOpts)
+    this.rippleNotesIndex = ++this.rippleNotesIndex % this.config.sound.notes.length
+
+    particle.soundHasBeenTriggered = false
+    particle.note = this.config.sound.notes[this.rippleNotesIndex]
+    return particle
   }
 
   drawRipple (particle) {

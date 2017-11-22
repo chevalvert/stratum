@@ -6,6 +6,7 @@ const Animation = require(path.join(paths.utils, 'animation'))
 const Strike = require(path.join(paths.utils, 'strike'))
 const { map } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
+const sound  = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Storm extends Animation {
   constructor (manager, offset) {
@@ -16,6 +17,8 @@ module.exports = class Storm extends Animation {
 
   update (dt) {
     super.update(dt)
+    sound.send('/mix', [4, this.percentVisible])
+
     this.clear()
 
     const h = hand()
@@ -41,6 +44,7 @@ module.exports = class Storm extends Animation {
 
   spawn (opts) {
     const strike = new Strike(this, opts)
+    sound.send(this.config.sound.name, [this.config.sound.note, this.config.sound.velocity, opts.lifetime * 1000])
 
     this.strikes.push(strike)
     this.lastStrike = strike.start

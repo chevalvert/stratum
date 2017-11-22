@@ -2,9 +2,9 @@
 
 const path = require('path')
 const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
-const { Vec3 } = require('vec23')
 const { map } = require('missing-math')
-const { hand }  = require(path.join(paths.lib, 'leap'))
+const { hand } = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 const Particle = require(path.join(paths.utils, 'particle'))
 const Animation = require(path.join(paths.utils, 'animation'))
@@ -21,6 +21,8 @@ module.exports = class Wind extends Animation {
 
   update (dt) {
     super.update(dt)
+    sound.send('/mix', [5, this.percentVisible])
+
     this.clear()
 
     const h = hand()
@@ -56,10 +58,24 @@ module.exports = class Wind extends Animation {
         this.set(x, y, surface[x][y], config.white)
       }
     }
+
+    sound.send(this.config.sounds[0].name,
+               map(this.particles.length,
+                   this.config.particlesLength[0],
+                   this.config.particlesLength[1],
+                   this.config.sounds[0].mod[0],
+                   this.config.sounds[0].mod[1]))
+
+    sound.send(this.config.sounds[1].name,
+               map(surfaceHeight,
+                   0,
+                   this.height,
+                   this.config.sounds[1].mod[0],
+                   this.config.sounds[1].mod[1]))
   }
 
   createParticle (particleOpts) {
-    const x = - Math.random() * 2
+    const x = -Math.random() * 2
     const y = this.depth * Math.random()
     const z = Math.random() * this.height
     return new Particle(x, y, z, particleOpts)
@@ -81,5 +97,4 @@ module.exports = class Wind extends Animation {
       }
     }
   }
-
 }

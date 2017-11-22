@@ -6,6 +6,7 @@ const Animation = require(path.join(paths.utils, 'animation'))
 const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
+const sound  = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Cave extends Animation {
   constructor (manager, offset) {
@@ -15,6 +16,7 @@ module.exports = class Cave extends Animation {
 
   update (dt) {
     super.update(dt)
+    sound.send('/mix', [1, this.percentVisible])
 
     const h = hand()
     this.camera.x += map(h.x, 0, 1, -0.01, 0.01)
@@ -27,6 +29,7 @@ module.exports = class Cave extends Animation {
   terrain (h, position) {
     const off = map(h.z, 0, 1, this.config.noise.zoff[0], this.config.noise.zoff[1])
 
+    let count = 0
     let xoff = position.x
     for (let x = 0; x < this.width; x++) {
       xoff += this.config.noise.resolution
@@ -41,8 +44,11 @@ module.exports = class Cave extends Animation {
           const g = this.config.color[1] * v
           const b = this.config.color[2] * v
           this.set(x, y, this.height - zoff, [r, g, b])
+          count++
         }
       }
     }
+
+    sound.send(this.config.sound.name, map(count, 0, this.aera, this.config.sound.mod[0], this.config.sound.mod[1]))
   }
 }

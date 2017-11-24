@@ -16,7 +16,7 @@ module.exports = class Cave extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.send('/mix', [1, this.percentVisible])
+    sound.enabled && sound.send('/mix', [1, this.percentVisible])
 
     const h = hand()
     this.camera.x += map(h.x, 0, 1, -0.01, 0.01)
@@ -49,6 +49,6 @@ module.exports = class Cave extends Animation {
       }
     }
 
-    sound.send(this.config.sound.name, map(count, 0, this.aera, this.config.sound.mod[0], this.config.sound.mod[1]))
+    sound.enabled && sound.send(this.config.sound.name, map(count, 0, this.aera, this.config.sound.mod[0], this.config.sound.mod[1]))
   }
 }

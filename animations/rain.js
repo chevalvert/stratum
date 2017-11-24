@@ -26,7 +26,7 @@ module.exports = class Rain extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.send('/mix', [3, this.percentVisible])
+    sound.enabled && sound.send('/mix', [3, this.percentVisible])
 
     this.clear()
 
@@ -61,7 +61,7 @@ module.exports = class Rain extends Animation {
         if (this.config.ripple.enable) {
           if (particle.z < this.config.ripple.triggerZ[0] && particle.z > this.config.ripple.triggerZ[1]) {
             this.drawRipple(particle)
-            if (!particle.soundHasBeenTriggered) {
+            if (sound.enabled && !particle.soundHasBeenTriggered) {
               const velocity = Math.floor(map(this.particles.length, this.config.particlesLength[0], this.config.particlesLength[1], this.config.sound.velocity[0], this.config.sound.velocity[1]))
               const duration = Math.floor(map(this.particles.length, this.config.particlesLength[0], this.config.particlesLength[1], this.config.sound.duration[0], this.config.sound.duration[1]))
               sound.send(this.config.sound.name, [particle.note, velocity, duration])

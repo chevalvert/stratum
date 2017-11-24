@@ -15,7 +15,8 @@
       "local": "0.0.0.0",
       "remote": "127.0.0.1",
       "port": 2222
-    }
+    },
+    "mixer": [0, 1]
   },
 
   "animations": {
@@ -46,11 +47,12 @@
       "sounds": [
         {
           "name": "/earth-1",
-          "mod": [0.01, 0.3]
+          "mod": [0, 0.8],
+          "offsetFromMockHand": -0.5
         },
         {
           "name": "/earth-2",
-          "mod": [0, 1]
+          "mod": [0.8, 0.8]
         }
       ]
     },
@@ -102,11 +104,11 @@
       "sounds": [
         {
           "name": "/wind-1",
-          "mod": [0.01, 0.3]
+          "mod": [0, 0.3]
         },
         {
           "name": "/wind-2",
-          "mod": [0.01, 0.3]
+          "mod": [0, 0.3]
         }
       ]
     }

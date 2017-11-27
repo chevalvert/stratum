@@ -9,7 +9,7 @@ stratum
 
 Usage:
   stratum
-  stratum -klr --log.level=debug
+  stratum -klr --log-level=debug
   stratum -lts --log=<path>
   stratum --with=<path>
   stratum --help

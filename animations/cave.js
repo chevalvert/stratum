@@ -6,6 +6,7 @@ const Animation = require(path.join(paths.utils, 'animation'))
 const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
 const { hand }  = require(path.join(paths.lib, 'leap'))
+const sound  = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Cave extends Animation {
   constructor (manager, offset) {
@@ -15,6 +16,7 @@ module.exports = class Cave extends Animation {
 
   update (dt) {
     super.update(dt)
+    sound.enabled && sound.send('/mix', [1, this.percentVisible])
 
     const h = hand()
     this.camera.x += map(h.x, 0, 1, -0.01, 0.01)
@@ -22,6 +24,7 @@ module.exports = class Cave extends Animation {
 
     this.clear()
     this.terrain(h, this.camera)
+    sound.enabled && this.sfx(h)
   }
 
   terrain (h, position) {
@@ -42,6 +45,27 @@ module.exports = class Cave extends Animation {
           const b = this.config.color[2] * v
           this.set(x, y, this.height - zoff, [r, g, b])
         }
+      }
+    }
+  }
+
+  sfx (h) {
+    this.noteNeedChange = this.noteNeedChange || false
+    this.noteIndex = this.noteIndex || 0
+
+    if (h.isMockHand) {
+      sound.send(this.config.sound.name.off)
+    } else if (h) {
+      if (h.z < this.config.sound.thresholdZ) {
+        if (this.noteNeedChange) {
+          this.noteNeedChange = false
+          this.noteIndex = ++this.noteIndex % this.config.sound.notes.length
+          const note = this.config.sound.notes[this.noteIndex]
+          sound.send(this.config.sound.name.off)
+          sound.send(this.config.sound.name.on, note)
+        }
+      } else {
+        this.noteNeedChange = true
       }
     }
   }

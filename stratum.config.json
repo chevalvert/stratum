@@ -13,8 +13,12 @@
   "sound": {
     "udp": {
       "local": "0.0.0.0",
-      "remote": "127.0.0.1",
-      "port": 2222
+      "remote": "192.168.1.75",
+      "port": 2222,
+      "reconnection": {
+        "delay": 10000,
+        "attempts" : 30
+      }
     },
     "mixer": [0, 1]
   },

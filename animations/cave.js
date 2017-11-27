@@ -24,12 +24,12 @@ module.exports = class Cave extends Animation {
 
     this.clear()
     this.terrain(h, this.camera)
+    sound.enabled && this.sfx(h)
   }
 
   terrain (h, position) {
     const off = map(h.z, 0, 1, this.config.noise.zoff[0], this.config.noise.zoff[1])
 
-    let count = 0
     let xoff = position.x
     for (let x = 0; x < this.width; x++) {
       xoff += this.config.noise.resolution
@@ -44,11 +44,29 @@ module.exports = class Cave extends Animation {
           const g = this.config.color[1] * v
           const b = this.config.color[2] * v
           this.set(x, y, this.height - zoff, [r, g, b])
-          count++
         }
       }
     }
+  }
 
-    sound.enabled && sound.send(this.config.sound.name, map(count, 0, this.aera, this.config.sound.mod[0], this.config.sound.mod[1]))
+  sfx (h) {
+    this.noteNeedChange = this.noteNeedChange || false
+    this.noteIndex = this.noteIndex || 0
+
+    if (h.isMockHand) {
+      sound.send(this.config.sound.name.off)
+    } else if (h) {
+      if (h.z < this.config.sound.thresholdZ) {
+        if (this.noteNeedChange) {
+          this.noteNeedChange = false
+          this.noteIndex = ++this.noteIndex % this.config.sound.notes.length
+          const note = this.config.sound.notes[this.noteIndex]
+          sound.send(this.config.sound.name.off)
+          sound.send(this.config.sound.name.on, note)
+        }
+      } else {
+        this.noteNeedChange = true
+      }
+    }
   }
 }

@@ -33,8 +33,12 @@
         "zoff": [1, -0.25]
       },
       "sound": {
-        "name": "/cave",
-        "mod": [0, 1]
+        "name": {
+          "on": "/cave-on",
+          "off": "/cave-off"
+        },
+        "thresholdZ": 0.5,
+        "notes": [53, 57, 60, 64, 60]
       }
     },
 

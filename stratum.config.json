@@ -1,15 +1,64 @@
 {
-  "ledsLength": 90,
   "fps": 60,
+  "ledsLength": 90,
   "white": [255, 200, 150],
-  "scrollIncrement": 1,
-  "secondsBeforeSkip": 10,
-  "mockHandEasing": 0.09,
+
+  "timer": {
+    "scrollIncrement": 1,
+    "minimumInterval": 10000
+  },
+
+  "leap": { "mockHandEasing": 0.09 },
+
+  "sound": {
+    "udp": {
+      "local": "0.0.0.0",
+      "remote": "127.0.0.1",
+      "port": 2222
+    },
+    "mixer": [0, 1]
+  },
 
   "animations": {
     "separator": {
       "color": [255, 0, 0],
       "height": 1
+    },
+
+    "cave": {
+      "color": [255, 200, 220],
+      "camera": { "speed": -0.003 },
+      "noise": {
+        "resolution": 0.2,
+        "zoff": [1, -0.25]
+      },
+      "sound": {
+        "name": {
+          "on": "/cave-on",
+          "off": "/cave-off"
+        },
+        "thresholdZ": 0.5,
+        "notes": [53, 57, 60, 64, 60]
+      }
+    },
+
+    "earth": {
+      "camera": { "speed": -0.008 },
+      "noise": {
+        "resolution": 0.1,
+        "zoff": [-0.25, 0.5]
+      },
+      "sounds": [
+        {
+          "name": "/earth-1",
+          "mod": [0, 0.8],
+          "offsetFromMockHand": -0.5
+        },
+        {
+          "name": "/earth-2",
+          "mod": [0.8, 0.8]
+        }
+      ]
     },
 
     "rain": {
@@ -22,40 +71,14 @@
       "particlesLength": [3, 80],
       "particle": {
         "trailLength": [1, 50],
-        "trailPitch": 1,
         "maxSpeed": [0.1, 2],
         "acceleration": [0, 0, -0.01]
-      }
-    },
-
-    "wind": {
-      "particlesLength": [3, 100],
-      "particle": {
-        "trailLength": 3,
-        "trailPitch": 1,
-        "maxSpeed": 0.1,
-        "acceleration": [0.01, 0, 0]
-      }
-    },
-
-    "earth": {
-      "camera": {
-        "speed": -0.008
       },
-      "noise": {
-        "resolution": 0.1,
-        "zoff": [-0.25, 0.5]
-      }
-    },
-
-    "cave": {
-      "color": [255, 200, 220],
-      "camera": {
-        "speed": -0.003
-      },
-      "noise": {
-        "resolution": 0.2,
-        "zoff": [1, -0.25]
+      "sound": {
+        "name": "/rain",
+        "notes": [65, 76, 72, 59],
+        "velocity": [1, 127],
+        "duration": [10, 100]
       }
     },
 
@@ -67,8 +90,31 @@
       ],
       "delay": [0, 10],
       "duration": [3, 5],
-      "maxStrikesLength": 3
-    }
+      "maxStrikesLength": 3,
+      "sound": {
+        "name": "/storm",
+        "note": 65,
+        "velocity": 127
+      }
+    },
 
+    "wind": {
+      "particlesLength": [3, 100],
+      "particle": {
+        "trailLength": 3,
+        "maxSpeed": 0.1,
+        "acceleration": [0.01, 0, 0]
+      },
+      "sounds": [
+        {
+          "name": "/wind-1",
+          "mod": [0, 0.3]
+        },
+        {
+          "name": "/wind-2",
+          "mod": [0, 0.3]
+        }
+      ]
+    }
   }
 }

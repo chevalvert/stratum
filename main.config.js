@@ -23,6 +23,7 @@ const minimistOpts = {
     'keys',
     'leap',
     'reload',
+    'sound',
     'timer',
     'version'
   ],
@@ -34,6 +35,7 @@ const minimistOpts = {
     log: [],
     'log-level': [],
     reload: ['r'],
+    sound: ['s'],
     timer: ['t'],
     version: ['v'],
     with: ['w']
@@ -44,6 +46,7 @@ const minimistOpts = {
     log: false,
     'log-level': 6,
     reload: false,
+    sound: false,
     timer: false,
     with: null
   }

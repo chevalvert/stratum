@@ -10,7 +10,7 @@ stratum
 Usage:
   stratum
   stratum -klr --log.level=debug
-  stratum -lt --log=<path>
+  stratum -lts --log=<path>
   stratum --with=<path>
   stratum --help
   stratum --version
@@ -21,6 +21,7 @@ Options:
   -l, --leap              Enable leapmotion.
   -r, --reload            Enable livereloading of stratum.config.json.
   -t, --timer             Enable prev/next stack timer.
+  -s, --sound             Enable OSC sound output.
   -v, --version           Print the current version.
   -w, --with=<path>       Open the stratum-viewer applet as its visualiser.
   

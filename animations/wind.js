@@ -33,7 +33,7 @@ module.exports = class Wind extends Animation {
     for (let x = 0; x < this.width; x++) {
       surface[x] = []
       for (let y = 0; y < this.depth; y++) {
-        surface[x][y] = surfaceHeight + Math.cos(this.count * 1 + x / 10) * Math.sin(this.count * 0.3 + y / 10) * this.height / 4
+        surface[x][y] = surfaceHeight + Math.cos(this.count * 1 + x / this.config.amplitude[0]) * Math.sin(this.count * 0.3 + y / this.config.amplitude[1]) * this.height / 4
       }
     }
 

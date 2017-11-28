@@ -109,6 +109,7 @@
 
     "wind": {
       "particlesLength": [3, 100],
+      "amplitude": [10, 10],
       "particle": {
         "trailLength": 3,
         "maxSpeed": 0.1,

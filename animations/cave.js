@@ -56,9 +56,9 @@ module.exports = class Cave extends Animation {
 
     this.targetVolume = h.isMockHand ? this.config.sound.mod[0] : this.config.sound.mod[1]
     this.sfxVolume += (this.targetVolume - this.sfxVolume) * this.config.sound.easing
-    sound.send(this.config.sound.name.volume, this.sfxVolume)
 
     if (!h.isMockHand) {
+      this.sfxVolume *= map(h.z, 0, 1, 1, 0.5)
       if (h.z < this.config.sound.thresholdZ) {
         if (this.noteNeedChange) {
           this.noteNeedChange = false
@@ -71,5 +71,7 @@ module.exports = class Cave extends Animation {
         this.noteNeedChange = true
       }
     }
+
+    sound.send(this.config.sound.name.volume, this.sfxVolume)
   }
 }

@@ -5,8 +5,8 @@ const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
 const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
-const { hand }  = require(path.join(paths.lib, 'leap'))
-const sound  = require(path.join(paths.lib, 'sound'))
+const { hand } = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Earth extends Animation {
   constructor (manager, offset) {
@@ -51,9 +51,11 @@ module.exports = class Earth extends Animation {
 
   sfx (h) {
     const soundConfig = this.config.sounds[0]
-    // NOTE: offsetFromMockHand allows to drag the mock easing pos to another coord
-    const handValue = h.z + (h.isMockHand ? soundConfig.offsetFromMockHand : 0)
-    const value = map(handValue, 0, 1,soundConfig.mod[0],soundConfig.mod[1])
-    sound.send(soundConfig.name, value)
+
+    const target = h.isMockHand ? 0 : h.z
+    this.handValue = this.handValue || 0
+    this.handValue += (target - this.handValue) * soundConfig.easing
+
+    sound.send(soundConfig.name, map(this.handValue, 0, 1, soundConfig.mod[0], soundConfig.mod[1]))
   }
 }

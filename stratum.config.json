@@ -56,7 +56,7 @@
         {
           "name": "/earth-1",
           "mod": [0, 0.8],
-          "offsetFromMockHand": -0.5
+          "easing": 0.09
         },
         {
           "name": "/earth-2",

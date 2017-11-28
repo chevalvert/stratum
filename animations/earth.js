@@ -52,9 +52,9 @@ module.exports = class Earth extends Animation {
   sfx (h) {
     const soundConfig = this.config.sounds[0]
 
-    const target = h.isMockHand ? 0 : h.z
+    this.handValueTarget = h.isMockHand ? 0 : h.z
     this.handValue = this.handValue || 0
-    this.handValue += (target - this.handValue) * soundConfig.easing
+    this.handValue += (this.handValueTarget - this.handValue) * soundConfig.easing
 
     sound.send(soundConfig.name, map(this.handValue, 0, 1, soundConfig.mod[0], soundConfig.mod[1]))
   }

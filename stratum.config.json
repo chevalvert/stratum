@@ -41,9 +41,12 @@
       "sound": {
         "name": {
           "on": "/cave-on",
-          "off": "/cave-off"
+          "off": "/cave-off",
+          "volume": "/cave-1"
         },
         "thresholdZ": 0.5,
+        "mod": [0, 0.5],
+        "easing": 0.09,
         "notes": [53, 57, 60, 64, 60]
       }
     },

@@ -20,6 +20,7 @@
         "attempts" : 30
       }
     },
+    "playInterval": 10000,
     "floatDecimals" : 3,
     "mixer": [0, 1]
   },

@@ -21,7 +21,7 @@ module.exports = class Wind extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.enabled && sound.send('/mix', [5, this.percentVisible])
+    sound.enabled && this.manager.hasScrolled && sound.send('/mix', [5, this.percentVisible])
 
     this.clear()
 

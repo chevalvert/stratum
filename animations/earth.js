@@ -16,7 +16,7 @@ module.exports = class Earth extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.enabled && sound.send('/mix', [2, this.percentVisible])
+    sound.enabled && this.manager.hasScrolled && sound.send('/mix', [2, this.percentVisible])
 
     const h = hand()
     this.camera.x += map(h.x, 0, 1, -0.01, 0.01)

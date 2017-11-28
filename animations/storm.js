@@ -17,7 +17,7 @@ module.exports = class Storm extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.enabled && sound.send('/mix', [4, this.percentVisible])
+    sound.enabled && this.manager.hasScrolled && sound.send('/mix', [4, this.percentVisible])
 
     this.clear()
 

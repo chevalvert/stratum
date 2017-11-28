@@ -49,8 +49,10 @@ function timer (ms = 0) {
 }
 
 function initSound () {
-  for (let i = 0; i <= 5; i++) sound.send('/mix', [i, 0.1])
-  setInterval(() => sound.send('/play', 1), 10000)
+  for (let i = 0; i < 5; i++) sound.send('/mix', [i + 1, 0.1])
+  sound.send('/mix', [1, 1])
+
+  setInterval(() => sound.send('/play', 1), config.sound.playInterval)
 }
 
 // -------------------------------------------------------------------------

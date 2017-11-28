@@ -26,7 +26,7 @@ module.exports = class Rain extends Animation {
 
   update (dt) {
     super.update(dt)
-    sound.enabled && sound.send('/mix', [3, this.percentVisible])
+    sound.enabled && this.manager.hasScrolled && sound.send('/mix', [3, this.percentVisible])
 
     this.clear()
 

@@ -97,9 +97,16 @@
         [255, 255, 255],
         [255, 200, 150]
       ],
-      "delay": [0, 10],
-      "duration": [3, 5],
-      "maxStrikesLength": 3,
+      "delay": [0.1, 2],
+      "duration": [0.1, 0.5],
+      "maxStrikesLength": 2,
+      "sky": {
+        "enable": true,
+        "opacity": 0.7,
+        "resolution": 0.1,
+        "blinkDelay": [0.1, 1],
+        "blinkDuration": [0.1, 0.3]
+      },
       "sound": {
         "name": "/storm",
         "note": 65,

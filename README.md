@@ -82,7 +82,7 @@ Log level:
 - **`camera`** 
   - **`speed`** `int` : moving speed of the camera. Negative value invert the direction.
 - **`noise`** 
-  - **`resolution`** `float` : resolution of the perlin noise used to simulate the case.
+  - **`resolution`** `float` : resolution of the perlin noise used to simulate the cave.
   - **`zoff`** `[float min, float max]` : min and max noise z offset.
 - **`sound`** 
   - **`name`**
@@ -128,9 +128,15 @@ Log level:
 
 ### Storm
 - **`colors`** `[[int R, int G, int B]...]` : pool of colors used for the strikes.
-- **`delay`** `[int s min, int s max]` // WIP
-- **`duration`** `[int s min, int s max]` // WIP
-- **`maxStrikesLength`** `int` // WIP
+- **`delay`** `[int s min, int s max]` : min and max delay between two strikes.
+- **`duration`** `[int s min, int s max]` : min and max duration of a strike.
+- **`maxStrikesLength`** `int` : maximum length of concurrent strikes.
+- **`sky`**
+  - **`enable`** `boolean` : enable or disable the sky layer.
+  - **`opacity`** `float` : control the amount of light
+  - **`resolution`** `float` : resolution of the perlin noise used to simulate the sky's clouds.
+  - **`blinkDelay`** `[float s min, float s max]` : min and max delay between to sky blink.
+  - **`blinkDuration`** `[float min, float max]` : min and max duration of a blink.
 - **`sound`**
   - **`name`** `string` : name of the event triggered when a strike is alive.
   - **`note`** `int` : note played when the event is triggered.

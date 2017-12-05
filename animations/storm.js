@@ -20,10 +20,11 @@ module.exports = class Storm extends Animation {
     sound.enabled && this.manager.hasScrolled && sound.send('/mix', [4, this.percentVisible])
 
     this.clear()
-    this.config.sky.enable && this.blinkSky(this.config.skyZ)
 
     const h = hand()
     if (!h.isMockHand) {
+      this.config.sky.enable && this.blinkSky(this.config.skyZ)
+
       const delay = map(h.z, 0, 1, this.config.delay[0], this.config.delay[1])
       const lifetime = map(Math.random(), 0, 1, this.config.duration[0], this.config.duration[1])
       this.canSpawn(delay) && this.spawn({ lifetime })

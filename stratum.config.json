@@ -107,7 +107,8 @@
         "resolution": 0.1,
         "blinkDelay": [0.1, 1],
         "blinkDuration": [0.1, 0.3],
-        "contrast": 1
+        "contrast": 1,
+        "displayThreshold": 127
       },
       "sound": {
         "name": "/storm",

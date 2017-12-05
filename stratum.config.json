@@ -77,6 +77,7 @@
         "color": [12, 10, 7],
         "triggerZ": [-2, -10]
       },
+      "speedVariationFactor" : [0.75, 1.25],
       "particlesLength": [3, 80],
       "particle": {
         "trailLength": [1, 50],

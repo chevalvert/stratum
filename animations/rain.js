@@ -48,7 +48,7 @@ module.exports = class Rain extends Animation {
     }
 
     this.particles.forEach((particle, index) => {
-      particle.opts.maxSpeed = maxSpeed
+      particle.opts.maxSpeed = maxSpeed * map(Math.random(), 0, 1, 0.9, 1.1)
       particle.opts.trailLength = trailLength
       particle.update()
 

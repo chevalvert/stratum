@@ -23,11 +23,11 @@ module.exports = class Storm extends Animation {
 
     const h = hand()
     if (!h.isMockHand) {
-      this.config.sky.enable && this.blinkSky(this.config.skyZ)
-
       const delay = map(h.z, 0, 1, this.config.delay[0], this.config.delay[1])
       const lifetime = map(Math.random(), 0, 1, this.config.duration[0], this.config.duration[1])
       this.canSpawn(delay) && this.spawn({ lifetime })
+    } else {
+      this.config.sky.enable && this.blinkSky(this.config.skyZ)
     }
 
     this.strikes.forEach(strike => {

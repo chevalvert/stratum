@@ -60,7 +60,7 @@ module.exports = class Storm extends Animation {
         let yoff = Math.floor(this.count / this.skyRnd) * this.skyRnd
         for (let y = 0; y < this.depth; y++) {
           yoff += this.config.sky.resolution
-          let v = Math.max(0, Math.min(perlin(xoff, yoff), 1))
+          let v = Math.max(0, Math.min(perlin(xoff, yoff) ** this.config.sky.contrast, 1))
           let c = color.map(component => component * Math.max(0.01, v * this.config.sky.opacity))
           for (let z = 0; z < this.height; z++) {
             this.set(x, y, z, c)

@@ -106,7 +106,8 @@
         "opacity": 0.7,
         "resolution": 0.1,
         "blinkDelay": [0.1, 1],
-        "blinkDuration": [0.1, 0.3]
+        "blinkDuration": [0.1, 0.3],
+        "contrast": 1
       },
       "sound": {
         "name": "/storm",

@@ -80,7 +80,7 @@ Object.keys(minimistOpts.alias).forEach(key => {
 
 const Log = require('log')
 const stream = args.log
-  ? fs.createWriteStream(path.join(process.cwd(), args.log))
+  ? fs.createWriteStream(args.log)
   : null
 const logLevel = isNaN(args['log-level'])
   ? args['log-level']

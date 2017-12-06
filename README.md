@@ -8,14 +8,16 @@
 stratum
 
 Usage:
-  stratum
+  stratum <ENV>
   stratum -klr --log-level=debug
-  stratum -lts --log=<path>
-  stratum --with=<path>
+  stratum 'lyon' -lts --log=<path>
+  stratum 'dev' --with=<path>
   stratum --help
   stratum --version
 
 Options:
+  <ENV>                   Run with stratum.[config/mapping].ENV.json.
+                          If left blank, run with 'dev' ENV.
   -h, --help              Show this screen.
   -k, --keys              Enable prev/next animations using arrow keys.
   -l, --leap              Enable leapmotion.
@@ -50,7 +52,7 @@ Log level:
 <br>
 
 ## Configuration 
-[`stratum.config.json`](stratum.config.json)
+[`stratum.config.<ENV>.json`](stratum.config.dev.json)
 
 ### Global config
 - **`fps`** `int` : stratum main loop framerate

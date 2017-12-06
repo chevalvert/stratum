@@ -88,18 +88,24 @@ const logLevel = isNaN(args['log-level'])
 const log = new Log(logLevel, stream)
 
 /**
+ * Envfiles
+ */
+
+const env = argv._[0] || 'dev'
+
+/**
  * Project config.json, with livereload capability
  */
 
 let config = Object.assign({},
-  require(path.join(paths.root, 'stratum.config.json')),
-  require(path.join(paths.root, 'stratum.mapping.json')) || {})
+    require(path.join(paths.root, `stratum.config.${env}.json`)),
+    require(path.join(paths.root, `stratum.mapping.${env}.json`)) || {})
 
 if (args.reload) {
   const chokidar = require('chokidar')
   const fs = require('fs')
   chokidar
-    .watch(path.join(paths.root, 'stratum.config.json'))
+    .watch(path.join(paths.root, `stratum.config.${env}.json`))
     .on('change', file => {
       try {
         const newConfig = JSON.parse(fs.readFileSync(file))
@@ -110,4 +116,4 @@ if (args.reload) {
     })
 }
 
-module.exports = { paths, config, args, log }
+module.exports = { paths, config, args, log, env }

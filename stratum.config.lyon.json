@@ -8,8 +8,21 @@
       "cave",
       "earth",
       "rain",
+      "wind",
       "storm",
-      "wind"
+      "earth",
+      "cave",
+      "wind",
+      "rain",
+      "earth",
+      "rain",
+      "storm",
+      "cave",
+      "earth",
+      "wind",
+      "rain",
+      "wind",
+      "earth"
     ],
     "scrollIncrement": 1,
     "minimumInterval": 10000

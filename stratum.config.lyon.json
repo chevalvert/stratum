@@ -1,0 +1,140 @@
+{
+  "fps": 60,
+  "ledsLength": 90,
+  "white": [255, 200, 150],
+
+  "timer": {
+    "scrollIncrement": 1,
+    "minimumInterval": 10000
+  },
+
+  "leap": { "mockHandEasing": 0.09 },
+
+  "sound": {
+    "udp": {
+      "local": "0.0.0.0",
+      "remote": "127.0.0.1",
+      "port": 2222,
+      "reconnection": {
+        "delay": 10000,
+        "attempts" : 30
+      }
+    },
+    "playInterval": 10000,
+    "floatDecimals" : 3,
+    "mixer": [0, 1]
+  },
+
+  "animations": {
+    "separator": {
+      "color": [255, 0, 0],
+      "height": 1
+    },
+
+    "cave": {
+      "color": [255, 200, 220],
+      "camera": { "speed": -0.003 },
+      "noise": {
+        "resolution": 0.2,
+        "zoff": [1, -0.25]
+      },
+      "sound": {
+        "name": {
+          "on": "/cave-on",
+          "off": "/cave-off",
+          "volume": "/cave-1"
+        },
+        "thresholdZ": 0.3,
+        "mod": [0, 0.5],
+        "easing": 0.09,
+        "notes": [53, 57, 60, 64, 60]
+      }
+    },
+
+    "earth": {
+      "camera": { "speed": -0.008 },
+      "noise": {
+        "resolution": 0.1,
+        "zoff": [-0.25, 0.5]
+      },
+      "sounds": [
+        {
+          "name": "/earth-1",
+          "mod": [0, 0.5],
+          "easing": 0.09
+        },
+        {
+          "name": "/earth-2",
+          "mod": [0.8, 0.8]
+        }
+      ]
+    },
+
+    "rain": {
+      "color": [255, 200, 220],
+      "ripple": {
+        "enable": true,
+        "color": [12, 10, 7],
+        "triggerZ": [-2, -10]
+      },
+      "speedVariationFactor" : [0.5, 1.5],
+      "particlesLength": [3, 80],
+      "particle": {
+        "trailLength": [1, 50],
+        "maxSpeed": [0.1, 2],
+        "acceleration": [0, 0, -0.01]
+      },
+      "sound": {
+        "name": "/rain",
+        "notes": [65, 76, 72, 59],
+        "velocity": [1, 127],
+        "duration": [10, 100]
+      }
+    },
+
+    "storm": {
+      "colors": [
+        [255, 200, 220],
+        [255, 255, 255],
+        [255, 200, 150]
+      ],
+      "delay": [0.1, 2],
+      "duration": [0.1, 0.5],
+      "maxStrikesLength": 2,
+      "sky": {
+        "enable": true,
+        "opacity": 1,
+        "resolution": 0.1,
+        "blinkDelay": [0, 5],
+        "blinkDuration": [0.1, 0.3],
+        "contrast": 3,
+        "displayThreshold": 2.58
+      },
+      "sound": {
+        "name": "/storm",
+        "note": 65,
+        "velocity": 127
+      }
+    },
+
+    "wind": {
+      "particlesLength": [3, 100],
+      "amplitude": [10, 10],
+      "particle": {
+        "trailLength": 3,
+        "maxSpeed": 0.1,
+        "acceleration": [0.01, 0, 0]
+      },
+      "sounds": [
+        {
+          "name": "/wind-1",
+          "mod": [0, 0.01]
+        },
+        {
+          "name": "/wind-2",
+          "mod": [0, 0.1]
+        }
+      ]
+    }
+  }
+}

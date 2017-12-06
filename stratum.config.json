@@ -13,7 +13,7 @@
   "sound": {
     "udp": {
       "local": "0.0.0.0",
-      "remote": "192.168.1.75",
+      "remote": "127.0.0.1",
       "port": 2222,
       "reconnection": {
         "delay": 10000,
@@ -60,7 +60,7 @@
       "sounds": [
         {
           "name": "/earth-1",
-          "mod": [0, 0.8],
+          "mod": [0, 0.5],
           "easing": 0.09
         },
         {
@@ -77,7 +77,7 @@
         "color": [12, 10, 7],
         "triggerZ": [-2, -10]
       },
-      "speedVariationFactor" : [0.75, 1.25],
+      "speedVariationFactor" : [0.5, 1.5],
       "particlesLength": [3, 80],
       "particle": {
         "trailLength": [1, 50],
@@ -103,12 +103,12 @@
       "maxStrikesLength": 2,
       "sky": {
         "enable": true,
-        "opacity": 0.7,
+        "opacity": 1,
         "resolution": 0.1,
-        "blinkDelay": [0.1, 1],
+        "blinkDelay": [0, 5],
         "blinkDuration": [0.1, 0.3],
-        "contrast": 1,
-        "displayThreshold": 127
+        "contrast": 3,
+        "displayThreshold": 2.58
       },
       "sound": {
         "name": "/storm",
@@ -128,11 +128,11 @@
       "sounds": [
         {
           "name": "/wind-1",
-          "mod": [0, 0.3]
+          "mod": [0, 0.01]
         },
         {
           "name": "/wind-2",
-          "mod": [0, 0.3]
+          "mod": [0, 0.1]
         }
       ]
     }

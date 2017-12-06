@@ -12,9 +12,6 @@ const leap = require(path.join(paths.lib, 'leap'))
 const sound = require(path.join(paths.lib, 'sound'))
 
 const animations = manager.stack([
-  // 'debug',
-  // manager.Separator,
-
   'cave',
   manager.Separator,
   'earth',
@@ -37,12 +34,13 @@ stratum.server.on('newnode', () => {
   }
 })
 
+let timelineIndex = 0
 function timer (ms = 0) {
   const leapTimeVisible = leap.timeVisible() || 0
   if (leapTimeVisible === 0 && ms > config.timer.minimumInterval) {
     ms = 1000
-    if (Math.random() > 0.5) animations.next()
-    else animations.previous()
+    timelineIndex = ++timelineIndex % config.timer.timeline.length
+    animations.select(config.timer.timeline[timelineIndex])
   }
 
   setTimeout(() => timer(ms + 1000), 1000)

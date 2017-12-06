@@ -4,6 +4,13 @@
   "white": [255, 200, 150],
 
   "timer": {
+    "timeline": [
+      "cave",
+      "earth",
+      "rain",
+      "storm",
+      "wind"
+    ],
     "scrollIncrement": 1,
     "minimumInterval": 10000
   },

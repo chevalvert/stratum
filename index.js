@@ -36,7 +36,7 @@ stratum.server.on('newnode', () => {
 
 let timelineIndex = 0
 function timer (ms = 0) {
-  const leapTimeVisible = leap.timeVisible() || 0
+  const leapTimeVisible = leap.timeVisible() || 0
   if (leapTimeVisible === 0 && ms > config.timer.minimumInterval) {
     ms = 1000
     timelineIndex = ++timelineIndex % config.timer.timeline.length

@@ -91,7 +91,7 @@ const log = new Log(logLevel, stream)
  * Envfiles
  */
 
-const env = argv._[0] || 'dev'
+const env = argv._[0] || 'dev'
 
 /**
  * Project config.json, with livereload capability

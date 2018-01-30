@@ -3,13 +3,13 @@ stratum
 Usage:
   stratum <ENV>
   stratum -klr --log-level=debug
-  stratum 'lyon' -lts --log=<path>
+  stratum 'production' -lts --log=<path>
   stratum 'dev' --with=<path>
   stratum --help
   stratum --version
 
 Options:
-  <ENV>                   Run with stratum.[config/mapping].ENV.json.
+  <ENV>                   Run with stratum.[config|mapping].ENV.json.
                           If left blank, run with 'dev' ENV.
   -h, --help              Show this screen.
   -k, --keys              Enable prev/next animations using arrow keys.

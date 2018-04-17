@@ -9,7 +9,7 @@
     "stratum": "index.js"
   },
   "scripts": {
-    "start": "node index.js --keys --reload --sound --leap --log-level='debug' --with='/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch'"
+    "start": "node index.js 'dev' --keys --reload --sound --leap --log-level='debug' --with='/Users/RNO/Projects/chevalvert/stratum/stratum-viewer/sketch'"
   },
   "dependencies": {
     "chokidar": "^1.7.0",

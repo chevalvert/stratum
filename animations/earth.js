@@ -3,7 +3,6 @@
 const path = require('path')
 const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
-const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
 const { hand } = require(path.join(paths.lib, 'leap'))
 const sound = require(path.join(paths.lib, 'sound'))
@@ -53,7 +52,7 @@ module.exports = class Earth extends Animation {
     const soundConfig = this.config.sounds[0]
 
     this.handValueTarget = h.isMockHand ? 0 : h.z
-    this.handValue = this.handValue || 0
+    this.handValue = this.handValue || 0
     this.handValue += (this.handValueTarget - this.handValue) * soundConfig.easing
 
     sound.send(soundConfig.name, map(this.handValue, 0, 1, soundConfig.mod[0], soundConfig.mod[1]))

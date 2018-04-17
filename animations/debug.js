@@ -4,13 +4,9 @@ const path = require('path')
 const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
 
-const { hand }  = require(path.join(paths.lib, 'leap'))
+const { hand } = require(path.join(paths.lib, 'leap'))
 
 module.exports = class Debug extends Animation {
-  constructor (manager, offset) {
-    super(manager, offset)
-  }
-
   update (dt) {
     super.update(dt)
     this.clear()

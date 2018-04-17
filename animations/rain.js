@@ -1,11 +1,10 @@
 'use strict'
 
 const path = require('path')
-const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
-const { Vec3 } = require('vec23')
+const { paths } = require(path.join(__dirname, '..', 'main.config.js'))
 const { map } = require('missing-math')
-const { hand }  = require(path.join(paths.lib, 'leap'))
-const sound  = require(path.join(paths.lib, 'sound'))
+const { hand } = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 const Particle = require(path.join(paths.utils, 'particle'))
 const Animation = require(path.join(paths.utils, 'animation'))
@@ -18,8 +17,6 @@ module.exports = class Rain extends Animation {
 
     const len = (this.config.particlesLength[0] + this.config.particlesLength[1]) / 2
     for (let i = 0; i < len; i++) {
-      const x = Math.random() * this.width
-      const y = Math.random() * this.depth
       this.particles[i] = this.createParticle(this.config.particle)
     }
   }
@@ -38,7 +35,7 @@ module.exports = class Rain extends Animation {
     const particleOpts = {
       ...this.config.particle,
       maxSpeed,
-      trailLength: trailLength | 0
+      trailLength: trailLength | 0
     }
 
     if (this.particles.length < particlesLength) {
@@ -108,5 +105,4 @@ module.exports = class Rain extends Animation {
       this.set(particle.x, particle.y, z, [r, g, b])
     }
   }
-
 }

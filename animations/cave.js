@@ -1,12 +1,11 @@
 'use strict'
 
 const path = require('path')
-const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
+const { paths } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
-const { Vec3 } = require('vec23')
 const { map, perlin } = require('missing-math')
-const { hand }  = require(path.join(paths.lib, 'leap'))
-const sound  = require(path.join(paths.lib, 'sound'))
+const { hand } = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Cave extends Animation {
   constructor (manager, offset) {
@@ -51,7 +50,7 @@ module.exports = class Cave extends Animation {
 
   sfx (h) {
     this.noteNeedChange = this.noteNeedChange || false
-    this.noteIndex = this.noteIndex || 0
+    this.noteIndex = this.noteIndex || 0
     this.sfxVolume = this.sfxVolume || 0
 
     this.targetVolume = h.isMockHand ? this.config.sound.mod[0] : this.config.sound.mod[1]

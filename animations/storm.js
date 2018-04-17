@@ -1,12 +1,12 @@
 'use strict'
 
 const path = require('path')
-const { paths, config } = require(path.join(__dirname, '..', 'main.config.js'))
+const { paths } = require(path.join(__dirname, '..', 'main.config.js'))
 const Animation = require(path.join(paths.utils, 'animation'))
 const Strike = require(path.join(paths.utils, 'strike'))
 const { map, perlin } = require('missing-math')
-const { hand }  = require(path.join(paths.lib, 'leap'))
-const sound  = require(path.join(paths.lib, 'sound'))
+const { hand } = require(path.join(paths.lib, 'leap'))
+const sound = require(path.join(paths.lib, 'sound'))
 
 module.exports = class Storm extends Animation {
   constructor (manager, offset) {
@@ -41,9 +41,9 @@ module.exports = class Storm extends Animation {
   }
 
   blinkSky (z = 0) {
-    this.nextBlink = this.nextBlink || 0
-    this.skyRnd = this.skyRnd || 0
-    this.skyDuration = this.skyDuration || 0
+    this.nextBlink = this.nextBlink || 0
+    this.skyRnd = this.skyRnd || 0
+    this.skyDuration = this.skyDuration || 0
 
     if (this.count > this.nextBlink) {
       if (this.count > this.nextBlink + this.skyDuration) {
@@ -74,8 +74,8 @@ module.exports = class Storm extends Animation {
   }
 
   canSpawn (delay) {
-    return this.count > this.lastStrike + delay
-        && this.strikes.length < this.config.maxStrikesLength
+    return this.count > this.lastStrike + delay &&
+        this.strikes.length < this.config.maxStrikesLength
   }
 
   spawn (opts) {

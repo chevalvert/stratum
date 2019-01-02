@@ -25,7 +25,7 @@
       "earth"
     ],
     "scrollIncrement": 1,
-    "minimumInterval": 10000
+    "minimumInterval": 25000
   },
 
   "leap": { "mockHandEasing": 0.09 },

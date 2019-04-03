@@ -1,26 +1,24 @@
 # stratum [<img src="https://github.com/chevalvert.png?size=100" align="right">](http://chevalvert.fr/)
-
-*Stratum main app*
+**[Stratum](https://github.com/chevalvert?q=stratum)** main app
 
 <br>
 
-## Stratum ecosystem
-- `stratum` : stratum main app
-- [`stratum-assistant`](https://github.com/chevalvert/stratum-assistant) : stratum setup and mapping assistant
+## [Stratum](https://github.com/chevalvert?q=stratum) ecosystem
+- `stratum` : Stratum main app
+- [`stratum-assistant`](https://github.com/chevalvert/stratum-assistant) : Stratum setup and mapping assistant
 - [`stratum-hnode`](https://github.com/Hemisphere-Project/STRATUM) : leds UDP server + client
-- [`stratum-viewer`](https://github.com/chevalvert/stratum-viewer) : alternative UDP client
+- [`stratum-viewer`](https://github.com/chevalvert/stratum-viewer) : Stratum `hnode` 3D previewer
+- [`stratum-documentation`](https://github.com/chevalvert/stratum-documentation) : Stratum hardware, hookup & misc guides
 
 ## Installation
-
-<pre>
+```sh
 $ git clone https://github.com/chevalvert/stratum.git stratum-app
 $ cd stratum-app
-$ <a href="https://yarnpkg.com/en/docs/install">yarn</a> install
-$ yarn link
-</pre>
+$ npm install
+$ npm link
+```
 
 ## Usage
-
 ```
 stratum
 
@@ -59,7 +57,6 @@ Log level:
 ```
 
 ## Connection
-
 To connect to `stratum` via UDP, use the following IPV4 config:
 ```
 IP Address: 192.168.0.200
